@@ -19,7 +19,7 @@
         type: "GET",
         // dataType: "jsonp",
         //url需要后台php返回一段数据，，具体是什么数据，我忘了，，文档上有写
-        url: "https://www.zhangzhenguo1.com/wxJssdk?timestamp=123123&nonce=12312&signature=3c88774101bde143c2a431c9469f7df21a6257a8",
+        url: "https://www.zhangzhenguo1.com/wxJssdk?timestamp=123123&nonce=12312&signature=3c88774101bde143c2a431c9469f7df21a6257a8&appId=wxb1d34a0e7f8262dd",
         // data: {"param": JSON.stringify(info)},
         async: false,
         success: function (data) {
