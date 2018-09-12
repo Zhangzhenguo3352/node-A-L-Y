@@ -17,10 +17,10 @@
 
     $.ajax({
         type: "GET",
-        dataType: "jsonp",
+        // dataType: "jsonp",
         //url需要后台php返回一段数据，，具体是什么数据，我忘了，，文档上有写
-        url: "http://app.hocodo.com/webapps/weixinservice/weixinservice.php?callback=?",
-        data: {"param": JSON.stringify(info)},
+        url: "https://www.zhangzhenguo1.com/wxJssdk?timestamp=123123&nonce=12312&signature=3c88774101bde143c2a431c9469f7df21a6257a8",
+        // data: {"param": JSON.stringify(info)},
         async: false,
         success: function (data) {
             console.dir(data);
