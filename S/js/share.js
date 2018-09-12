@@ -6,7 +6,7 @@
     //link为分享页所在的地址
     var _link = 'http://minisite.hocodo.com/test/propaganda/html/index.html';
     //_imgUrl 为 分享小图标的链接
-    var _imgUrl = 'http://minisite.hocodo.com/test/recruitMain/images/share.jpg';
+    var _imgUrl = 'https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=be3a8edb2cf5e0fefa1581533d095fcd/cefc1e178a82b90104b542f1728da9773812efdc.jpg';
     var url = window.location.href.split("#")[0];
     var signPackage;
     var info = {
