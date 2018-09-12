@@ -479,8 +479,8 @@ function renderPage() {
 
 	`
 }
-app.listen(2000,() => {
-	console.log('服务启动成功 2000')
+app.listen(6000,() => {
+	console.log('服务启动成功 6000')
 })
 
 
