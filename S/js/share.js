@@ -14,44 +14,88 @@
         secret: '',
         url: url
     };
+    let n = new Date().getTime()
 
-    wx.onMenuShareAppMessage({
-        title: _title,
-        desc: _desc,
-        link: _link,
-        imgUrl: _imgUrl,
-        trigger: function (res) {
-            //alert('用户点击发送给朋友');
-        },
-        success: function (res) {
-            //alert('已分享');
-        },
-        cancel: function (res) {
-            //alert('已取消');
-        },
-        fail: function (res) {
-            //alert(JSON.stringify(res));
+    $.ajax({
+        type: "GET",
+        // dataType: "jsonp",
+        //url需要后台php返回一段数据，，具体是什么数据，我忘了，，文档上有写
+        url: `https://www.zhangzhenguo1.com/wxJssdk?timestamp=${n}&nonce=22222312312cxsd&appId=wxb1d34a0e7f8262dd`,
+        // data: {"param": JSON.stringify(info)},
+        async: false,
+        success: function (data) {
+            console.dir(data);
+            wx.config({
+                //debug: true,
+                appId: data.appId,
+                timestamp: data.timestamp,
+                nonceStr: data.nonceStr,
+                signature: data.signature,
+                jsApiList: [
+                    // 所有要调用的 API 都要加到这个列表中
+                    'checkJsApi',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo',
+                    'hideMenuItems',
+                    'showMenuItems',
+                    'hideAllNonBaseMenuItem',
+                    'showAllNonBaseMenuItem',
+                    'getNetworkType',
+                    'openLocation',
+                    'getLocation',
+                    'hideOptionMenu',
+                    'showOptionMenu',
+                    'closeWindow'
+                ]
+            });
+
+            wx.ready(function () {
+                // 在这里调用 API
+                // 2. 分享接口
+                // 2.1 监听“分享给朋友”，按钮点击、自定义分享内容及分享结果接口
+
+                wx.onMenuShareAppMessage({
+                    title: _title,
+                    desc: _desc,
+                    link: _link,
+                    imgUrl: _imgUrl,
+                    trigger: function (res) {
+                        //alert('用户点击发送给朋友');
+                    },
+                    success: function (res) {
+                        //alert('已分享');
+                    },
+                    cancel: function (res) {
+                        //alert('已取消');
+                    },
+                    fail: function (res) {
+                        //alert(JSON.stringify(res));
+                    }
+                });
+
+
+                // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
+
+                wx.onMenuShareTimeline({
+                    title: _title,
+                    link: _link,
+                    imgUrl: _imgUrl,
+                    trigger: function (res) {
+                        // alert('用户点击分享到朋友圈');
+                    },
+                    success: function (res) {
+                        // alert('已分享');
+                    },
+                    cancel: function (res) {
+                        // alert('已取消');
+                    },
+                    fail: function (res) {
+                        // alert(JSON.stringify(res));
+                    }
+                });
+            });	//end of wx.ready
         }
-    });
-
-
-    // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
-
-    wx.onMenuShareTimeline({
-        title: _title,
-        link: _link,
-        imgUrl: _imgUrl,
-        trigger: function (res) {
-            // alert('用户点击分享到朋友圈');
-        },
-        success: function (res) {
-            // alert('已分享');
-        },
-        cancel: function (res) {
-            // alert('已取消');
-        },
-        fail: function (res) {
-            // alert(JSON.stringify(res));
-        }
-    });
+    })
 })();

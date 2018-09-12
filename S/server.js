@@ -13,7 +13,7 @@ app.get('/wxJssdk', (req, res) => {
     let wx = req.query
     
     let token = 'weixintoken20180912'
-    let timestamp = wx.timestamp
+    let timestamp = new Date().getTime()
     let nonce = wx.nonce
     
     // 1）将token、timestamp、nonce三个参数进行字典序排序
@@ -22,11 +22,16 @@ app.get('/wxJssdk', (req, res) => {
     // 2）将三个参数字符串拼接成一个字符串进行sha1加密
     let str = list.join('')
     let result = sha1(str)
-    console.log('req',result, wx.signature, wx.echostr)
     
     // 3）开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
-    if (result === wx.signature) {
-     res.send(wx.echostr) // 返回微信传来的echostr，表示校验成功，此处不能返回其它
+    if (result ) {
+        let json = {}
+        json.appId = wx.appId
+        json.timestamp = wx.timestamp
+        json.nonceStr = wx.nonceStr
+        json.signature = result
+        console.log('server',result)
+     res.send(json) // 返回微信传来的echostr，表示校验成功，此处不能返回其它
     } else {
      res.send(false)
     }
