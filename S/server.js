@@ -9,6 +9,7 @@ var compression = require('compression')
 // serve our static stuff like index.css
 app.use(express.static(path.join(__dirname), {index: false}))
 app.get('/wxJssdk', (req, res) => {
+    console.log('req',req, res)
     let wx = req.query
     
     let token = 'weixintoken20180912'
